@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+    <%= render "layouts/head" %>
+  <body>  
+	 <div class="row">
+	  <%= render "layouts/menu" %>
+	 </div> 
+
+    <div class="row">      
+	    <div class="large-12 columns layout-border">
+		  	<section id="main">
+			    <%= render :partial => 'layouts/do_flash' %>
+			    <%= yield %>
+			  </section>
+		  </div>
+		</div>
+	  <%= javascript_include_tag "application" %>
+  </body>
+</html>

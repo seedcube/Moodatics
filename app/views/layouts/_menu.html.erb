@@ -1,0 +1,50 @@
+<nav class="top-bar">
+  <ul class="title-area">
+    <!-- Title Area -->
+    <li class="name">
+      <h1><a href="<%= root_url %>">Moodatics</a></h1>
+    </li>
+    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+
+  <section class="top-bar-section">
+  
+
+    <!-- Right Nav Section -->
+    <ul class="right"> 
+	    <% if current_user %>  
+	      <% if current_user.role_id == 1 %>
+        <li class="divider"></li>
+        <li class="has-form">
+					  <%= link_to "Patients", users_path(:doctor => current_user.id) %>  
+				<li>
+				<li class="divider"></li>
+	      <li class="has-form">
+						<%= link_to "Add Patient", new_user_path(:doctor => current_user.id) %>  
+				<li>  
+				<% end %>	
+				<% if current_user.role_id == 2 %> 
+				   <li class="divider"></li>
+			      <li class="has-form">
+				    <%= link_to "Add Mood Data", new_mood_datum_path(:patient => current_user.id) %>   
+				   </li>
+				<% end %>
+        <li class="divider"></li>
+	      <li class="has-form">
+					  <%= link_to "Log Out", logout_path %>  
+				<li>
+		 <% else %>  
+		    <li class="divider"></li>
+	      <li class="has-form">
+					  <%= link_to "Sign Up", signup_path %> 
+				</li>
+				<li class="divider"></li>
+		    <li class="has-form">	
+					  <%= link_to "Log In", login_path %>  
+				</li>	
+	   <% end %>
+      
+    </ul>
+  </section>
+</nav>

@@ -1,0 +1,185 @@
+
+
+
+
+<h4>  
+<% if @user %>
+Patient: <%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %> 
+<% end %>
+</h4>  
+<div id="container" style="padding-bottom:50px;" data-date='<%=@mood_data.map{|vv| vv.entry_at.strftime("%d %b") }.join(",")%>' data-sleep='<%=@mood_data.map{|vv| vv.sleep }.join(",")%>' >
+</div>
+
+<div class="report-class-large">
+	<table style="width:100%">
+		   <tr> 
+			     <td> 
+				      MOOD
+				   </td>
+				   <td style="width:20px;">  
+			        	<div style="height:20px;width:20px;background:#FF0000;float:lefft"> 
+						       &nbsp;
+						    </div>  
+						</td>
+						<td>
+						
+						       ELEVATED
+						</td>
+				   	 <td style="width:20px;">  
+				        	<div style="height:20px;width:20px;background:#33FF00;float:lefft"> 
+							       &nbsp;
+							    </div>  
+							</td>
+							<td> 
+					       NORMAL
+					   
+					 </td>
+					 <td style="width:20px;">  
+			        	<div style="height:20px;width:20px;background:#3333FF;float:lefft"> 
+						       &nbsp;
+						    </div>  
+						</td>
+						<td>
+					       DEPRESSED
+				   </td>
+					 
+			 </tr>
+	</table>	
+</div>
+<div class="report-class-small">  
+	
+	<table style="width:100%">
+		   <tr> 
+			     <td> 
+				      MOOD
+				   </td> 
+				</tr> 
+				<tr>
+				   <td style="width:20px;">  
+			        	<div style="height:20px;width:20px;background:#FF0000;float:lefft"> 
+						       &nbsp;
+						    </div>  
+						</td> 
+						<td>
+						
+						       ELEVATED
+						</td>
+				</tr>	
+				<tr>	
+				   	 <td style="width:20px;">  
+				        	<div style="height:20px;width:20px;background:#33FF00;float:lefft"> 
+							       &nbsp;
+							    </div>  
+							</td>
+							<td> 
+					       NORMAL
+					    </td> 
+				 </tr> 
+				 <tr>
+					 <td style="width:20px;">  
+			        	<div style="height:20px;width:20px;background:#3333FF;float:lefft"> 
+						       &nbsp;
+						    </div>  
+						</td>
+						<td>
+					       DEPRESSED
+				   </td>
+			 </tr>
+	</table>
+	
+	
+</div>		
+
+
+<div class="report-class-large">
+<table style="width:100%">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Mood</th>
+      <th>Sleep</th>
+      <th>Irritability</th>
+      <th>Anxiety</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <% if @mood_data && @mood_data.size > 0 %>
+  <tbody>
+    <% @mood_data.each do |mood_datum| %>
+      <tr>
+        <td><%= mood_datum.entry_at.strftime("%d %b %Y") %></td>
+        <td><%= show_mood(mood_datum.mood) %></td>
+        <td><%= mood_datum.sleep %></td>
+        <td><%= show_irritability(mood_datum.irritability) %></td>
+        <td><%= show_anxiety(mood_datum.anxiety) %></td>
+        <td><%= mood_datum.comments %></td>   
+        <!--
+        <td><%#= link_to 'Show', mood_datum %></td>
+        <td><%#= link_to 'Edit', edit_mood_datum_path(mood_datum) %></td>
+        <td><%#= link_to 'Destroy', mood_datum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        -->
+      </tr>
+    <% end %>
+  </tbody>  
+   <% else %> 
+    <tr> 
+	   <td colspan="5">
+		   Not Avaliable
+		 </td>
+	  </tr>
+   <% end %>
+</table>
+</div> 
+<div class="report-class-small">
+	 <table style="width:100%">
+	 
+	  <% if @mood_data && @mood_data.size > 0 %>
+	  <tbody>
+	    <% @mood_data.each do |mood_datum| %>
+	      <tr> 
+		      <td> Date </td>
+	        <td><%= mood_datum.entry_at.strftime("%d %b %Y") %></td>
+	      </tr>
+	      <tr>  
+		          <td>Mood</td>
+	        <td><%= show_mood(mood_datum.mood) %></td> 
+	       </tr>
+		     <tr> 
+			        <td>Sleep</td> 
+	        <td><%= mood_datum.sleep %></td> 
+	       </tr>
+		      <tr> 
+			     <td>Irritability</td> 
+	        <td><%= show_irritability(mood_datum.irritability) %></td> 
+	       </tr>
+		      <tr> 
+			     <td>Anxiety</td> 
+	        <td><%= show_anxiety(mood_datum.anxiety) %></td>  
+	       </tr>
+		      <tr> 
+			     <td>Comments</td>  
+	        <td><%= mood_datum.comments %></td>  
+	        </tr> 
+	        <!--
+	        <td><%#= link_to 'Show', mood_datum %></td>
+	        <td><%#= link_to 'Edit', edit_mood_datum_path(mood_datum) %></td>
+	        <td><%#= link_to 'Destroy', mood_datum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	        -->
+	      </tr>
+	    <% end %>
+	  </tbody>  
+	   <% else %> 
+	    <tr> 
+		   <td colspan="5">
+			   Not Avaliable
+			 </td>
+		  </tr>
+	   <% end %>
+	</table>
+</div>	
+<br>   
+
+
+
+
+<%#= link_to 'New Mood datum', new_mood_datum_path %>

@@ -1,0 +1,79 @@
+<h4>Patient List</h4>
+<div class="report-class-large">
+<table style="width:100%;">
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Middle name</th>
+      <th>Email</th>
+      <th></th> 
+      <th></th>  
+      </tr>
+  </thead>
+
+  <tbody> 
+	  <% if @users && @users.size > 0%>  
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.middle_name %></td>
+        <td><%= user.email %></td>  
+        <td><%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>  
+        <td><%= link_to 'Analytics', mood_data_path(:user => user.id) %></td> 
+      </tr>
+    <% end %>  
+    <% else %>  
+        <tr> 
+	            <td colspan="7">  
+		          No Patient Listed
+		          </td>
+	      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div> 
+<div class="report-class-small">  
+	<table style="width:100%;">
+	
+	  <tbody> 
+		  <% if @users && @users.size > 0%>  
+	    <% @users.each do |user| %>
+	      <tr> 
+		      <td>First name</td> 
+	        <td><%= user.first_name %></td>
+	      </tr>
+	      <tr> 
+		      <td>Middle name</td>
+	        <td><%= user.middle_name %></td> 
+	      </tr>     
+	      <tr>
+		      <td>Last name</td> 
+	        <td><%= user.last_name %></td> 
+	      </tr>      
+	      <tr> 
+		      <td>Email</td>   
+	        <td><%= user.email %></td> 
+	      </tr>    
+		    <tr>
+	        <td><%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button' %></td>  
+	        <td><%= link_to 'Analytics', mood_data_path(:user => user.id), class: 'button' %></td> 
+	      </tr>
+	   
+	    <% end %>  
+	    <% else %>  
+	        <tr> 
+		            <td colspan="7">  
+			          No Patient Listed
+			          </td>
+		      </tr>
+	    <% end %>
+	  </tbody>
+	</table> 
+	 <br>
+	 <hr>
+</div>
+<br>
+
+<%#= link_to 'New User', new_user_path %>

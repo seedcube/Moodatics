@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Entry at:</strong>
+  <%= @mood_datum.entry_at %>
+</p>
+
+<p>
+  <strong>Mood:</strong>
+  <%= @mood_datum.mood %>
+</p>
+
+<p>
+  <strong>Sleep:</strong>
+  <%= @mood_datum.sleep %>
+</p>
+
+<p>
+  <strong>Irritability:</strong>
+  <%= @mood_datum.irritability %>
+</p>
+
+<p>
+  <strong>Anxiety:</strong>
+  <%= @mood_datum.anxiety %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @mood_datum.comments %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @mood_datum.user_id %>
+</p>
+
+<p>
+  <strong>Doctor:</strong>
+  <%= @mood_datum.doctor_id %>
+</p>
+
+<%= link_to 'Edit', edit_mood_datum_path(@mood_datum) %> |
+<%= link_to 'Back', mood_data_path %>

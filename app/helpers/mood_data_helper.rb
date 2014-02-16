@@ -1,0 +1,2 @@
+module MoodDataHelper
+end

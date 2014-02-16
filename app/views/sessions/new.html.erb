@@ -1,0 +1,16 @@
+<fieldset>
+   <legend>Log In</legend>
+
+<%= form_tag sessions_path do %>
+ <div class="row">
+	  <div class="large-6 columns">
+   		  <%= label_tag :email %><br />
+		    <%= text_field_tag :email, params[:email], :placeholder => 'Email' %>
+		    <%= label_tag :password %><br />
+		    <%= password_field_tag :password ,"", :placeholder => 'Password' %> 
+		    <%= submit_tag "Log In", class: 'button success ' %>   
+   	</div>
+ </div>
+<% end %>   
+
+</fieldset>

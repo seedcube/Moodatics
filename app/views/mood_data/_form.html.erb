@@ -1,0 +1,85 @@
+<fieldset>
+
+<%= form_for(@mood_datum) do |f| %>  
+<div class="row">    
+	   <div class="large-12 columns">
+  <% if @mood_datum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mood_datum.errors.count, "error") %> prohibited this mood_datum from being saved:</h2>
+      <ul>
+      <% @mood_datum.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %> 
+      <%= label_tag("mood_datum_entry_at", "How are you feeling today?") %>
+    <br>   
+    <% if @mood_datum.entry_at %>
+      <input type="date" name="mood_datum[entry_at]" > 
+    <% else %>
+      <input type="date" name="mood_datum[entry_at]" value="<%=Date.today%>" >
+    <% end %> 
+   
+    <%= f.label :sleep %><br>
+    <%= f.text_field :sleep %> 
+ 
+    <div class="row"> 
+	   <%= f.label :mood %>  
+	  <table style="width:100%;">  
+    <% PATIENT_MOOD.each do |v|%>  
+    <tr>  
+	   <td>
+      <%= f.radio_button(:mood, v[1]) %>  
+     </td>
+      <td>
+      <%= label_tag("mood_datum_mood+#{v[1]}", "#{v[0]}") %>  
+       </td>
+    </tr> 
+  	<% end %> 
+   </table> 
+		 </div>
+     <hr>
+     <div class="row">  
+	   <%= f.label :irritability %> 
+	  <table style="width:100%;">
+    <% PATIENT_IRRITABILITY.each do |v|%> 
+    <tr> 
+	   <td>
+    <%= f.radio_button(:irritability, v[1]) %> 
+   </td>
+   <td> 
+    <%= label_tag("mood_datum_irritability+#{v[1]}", "#{v[0]}") %>  
+    </td> 
+    </tr>
+  	<% end %>  
+    </table>
+	   </div> 
+	 <hr> 
+	 <div class="row">  
+    <%= f.label :anxiety %>
+	  <table style="width:100%;"> 
+    <% PATIENT_IRRITABILITY.each do |v|%>   
+     <tr>
+	     <td>
+      <%= f.radio_button(:anxiety, v[1]) %>   
+       </td> 
+       <td>
+      <%= label_tag("mood_datum_anxiety+#{v[1]}", "#{v[0]}") %>  
+       </td>
+    </tr>
+		<% end %> 
+		 </table> 
+	 </div>
+    <%= f.hidden_field :user_id, :value => current_user.id  %>
+    <%= f.hidden_field :doctor_id,  :value => current_user.doctor_id %>
+
+    <%= f.label :comments %><br>
+    <%= f.text_area :comments %>
+   
+
+   <%= f.submit :value =>"Submit" ,class: 'button success' %> 
+  </div>
+</div>
+<% end %>    
+</fieldset>

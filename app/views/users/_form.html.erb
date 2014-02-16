@@ -1,0 +1,43 @@
+<fieldset>
+   <legend>Sign Up</legend>
+
+<%= form_for @user do |f| %>  
+  <div class="row">    
+	   <div class="large-12 columns">  
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name ,:placeholder => 'First Name'%>
+    <%= f.label :middle_name %><br>
+	  <%= f.text_field :middle_name, :placeholder => 'Middle Name' %>  
+	  <%= f.label :last_name %><br> 
+    <%= f.text_field :last_name,:placeholder => 'Last Name' %>
+    <%= f.label :email %><br>
+    <%= f.text_field :email, :placeholder => 'Email' %>  
+    <% unless current_user %>
+    <%#= f.label :role %><br>
+    <%#= f.select :role_id, USER_ROLES, class: "medium" %> 
+    <%= f.hidden_field :role_id,  :value => 1 %>  
+    <% else %> 
+    <%= f.hidden_field :role_id, :value => 2 %>
+    <%= f.hidden_field :doctor_id,  :value => current_user.id %> 
+    <% end %>
+    <%= f.label :password %><br>
+    <%= f.password_field :password, :placeholder => 'Password' %>
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation, :placeholder => 'Password Confirmation'  %>
+    <%= f.submit class: 'button success' %>
+  </div>
+  </div>
+<% end %> 
+
+</fieldset>  
+
