@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 1.2'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+  gem 'sdoc'
 end
 
 # Use ActiveModel has_secure_password
@@ -47,6 +47,21 @@ end
 
 gem 'zurb-foundation', '~> 4.0.0'  
 
-gem 'bcrypt-ruby'
+gem 'bcrypt-ruby'   
+
+gem 'capistrano', '~> 3.1.0'
+
+
+
+# rails specific capistrano funcitons
+gem 'capistrano-rails', '~> 1.1.0'
+
+# integrate bundler with capistrano
+gem 'capistrano-bundler'
+
+# if you are using RBENV
+gem 'capistrano-rbenv', "~> 2.0" 
+  
+gem 'thin'   
 
 
