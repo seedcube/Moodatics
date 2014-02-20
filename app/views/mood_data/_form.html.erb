@@ -80,23 +80,21 @@
     <ul style="list-style-type:none !important;margin-top:20px;" id="add-significant_events-today"> 
 	     <% (1..1).each do |i|%>
 	      <li class="row" id="keep-row-id" data-row-id="<%=i%>" style="clear:both;">  
-				   <div class="large-1 columns small-1" style="text-align:center;"> 
-		       	  *
+				   <div class="number large-1 columns small-1" style="text-align:center;"> 
+		       	  <%= i %>
 		       </div>
 		       <div class="large-10 columns small-10">  
 			        <input type="text" name="significant_events[<%=i%>]" /> 
 			     </div>  
 			     <div class="large-1 columns small-4">  
-				     <a href="javascript:void();" class="remove-add-more-field">Remove</a> 
+				     <a href="javascript:void();" class="remove-add-more-field button tiny alert">Remove</a> 
 				   </div>
 		    </li> 
 		   <% end %>  
 		   
 	  </ul>
      <div class="row right" style="padding:10px;">  
-
-			     <a href="javascript:void();" id="add-more-button">Add More</a>
-	
+    	     <a href="javascript:void();" id="add-more-button" class="button success">Add More</a>
 	   </div>
 
    <%= f.submit :value =>"Submit" ,class: 'button success' %> 

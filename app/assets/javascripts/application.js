@@ -88,16 +88,30 @@ $( document ).ready(function() {
    });             
 }); 
 
-function add_more_significat_field(){ 
+function add_more_significat_field(){  
+  $('#add-significant_events-today li').size()
 	val = $('#keep-row-id').data('row-id') 
 	row_id =  val + 1
-	str = '<li class="row" style="clear:both;"> <div class="large-1 columns small-1" style="text-align:center;">'+'*'+'</div><div class="large-10 columns small-11"><input type="text" name="significant_events['+row_id+']"> </div><div class="large-1 columns small-4"><a href="javascript:void();" class="remove-add-more-field">Remove</a></div></li>' 
+	str = '<li class="row" style="clear:both;" data-row-id="'+row_id+'"><div class="number large-1 columns small-1" style="text-align:center;">'+null+'</div><div class="large-10 columns small-11"><input type="text" name="significant_events['+row_id+']"> </div><div class="large-1 columns small-4"><a href="javascript:void();" class="remove-add-more-field button tiny alert" onclick="$(this).parent().parent().remove(); ">Remove</a></div></li>' 
  
 	  $('#add-significant_events-today').append(str)
-	  $('#keep-row-id').data('row-id',row_id)
+	  $('#keep-row-id').data('row-id',row_id)  
+	
+		i = 1
+	  $('#add-significant_events-today li').each(function() {   
+	    $(this).find('.number').text(i)
+      i = i + 1
+    });
 }   
 function remove_more_significat_field(ele){ 
-	  $(ele).parent().parent().remove();
+	 // alert(3)  
+	  $(ele).parent().parent().remove();   
+	  i = 1
+	  $('#add-significant_events-today li').each(function() {   
+	    $(this).find('.number').text(i)
+      i = i + 1
+    });
+	  
 }
 
 

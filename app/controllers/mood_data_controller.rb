@@ -67,7 +67,7 @@ class MoodDataController < ApplicationController
   def update
     respond_to do |format|
       if @mood_datum.update(mood_datum_params)
-        format.html { redirect_to @mood_datum, notice: 'Mood datum was successfully updated.' }
+        format.html { redirect_to @mood_datum, notice: 'Mood data was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
