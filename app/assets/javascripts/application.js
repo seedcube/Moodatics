@@ -14,8 +14,90 @@
 //= require jquery_ujs
 //= require foundation  
 //= require turbolinks 
-//= require highcharts
-//= require chart
-//= require_tree .
+//= require highcharts   
+//= require chart  
+//= require jquery.validate.min.js
 
-$(document).foundation();
+
+$(document).foundation();    
+
+function date_renge(value, element){   
+  next = Date.parse(DateOneWeekNext(value))  
+ past = Date.parse(DateOneWeekBack(value)) 
+ 
+
+ if (new Date().getTime() > 7) 
+ {
+	  return true
+ }
+ else if(new Date().getTime() < 7)
+ {
+	 return false  
+ }
+ else
+ {
+	 return true  
+ }
+ 
+}  
+function MMDDYYYY(str) {
+        var ndateArr = str.toString().split(' ');
+        var Months = 'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec';
+        return (parseInt(Months.indexOf(ndateArr[1])/4)+1)+'/'+ndateArr[2]+'/'+ndateArr[3];
+    }
+function DateOneWeekBack(str){ 
+        str = str.split(/\D+/);
+        str = new Date(str[2],str[0]-1,(parseInt(str[1])-7));
+        return MMDDYYYY(str);
+} 
+function DateOneWeekNext(str){ 
+        str = str.split(/\D+/);
+        str = new Date(str[2],str[0]-1,(parseInt(str[1])+7));
+        return MMDDYYYY(str);
+}
+
+$( document ).ready(function() { 
+	  
+ // alert(3)    
+	
+	$.validator.addMethod("FutureDate",
+	    function (value, element) { return date_renge(value, element) },
+	    "Date must be in the one week old or next one week."
+	);
+	
+  $("#new_mood_datum").validate({
+	     
+	 	rules: {
+	    "mood_datum[entry_at]": {
+	      required: true,
+	      FutureDate: true
+	    }, 
+	    "mood_datum[sleep]": {
+	      required: true,
+	      number: true
+	    },
+	  }
+	
+   }); 
+
+   $('#add-more-button').on('click', function(){
+	     add_more_significat_field();
+   });  
+   $('.remove-add-more-field').on('click', function(){
+	     remove_more_significat_field(this);
+   });             
+}); 
+
+function add_more_significat_field(){ 
+	val = $('#keep-row-id').data('row-id') 
+	row_id =  val + 1
+	str = '<li class="row" style="clear:both;"> <div class="large-1 columns small-1" style="text-align:center;">'+'*'+'</div><div class="large-10 columns small-11"><input type="text" name="significant_events['+row_id+']"> </div><div class="large-1 columns small-4"><a href="javascript:void();" class="remove-add-more-field">Remove</a></div></li>' 
+ 
+	  $('#add-significant_events-today').append(str)
+	  $('#keep-row-id').data('row-id',row_id)
+}   
+function remove_more_significat_field(ele){ 
+	  $(ele).parent().parent().remove();
+}
+
+

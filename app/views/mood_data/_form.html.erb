@@ -1,11 +1,11 @@
 <fieldset>
 
-<%= form_for(@mood_datum) do |f| %>  
+<%= form_for(@mood_datum, :id => 'mood_data') do |f| %>  
 <div class="row">    
 	   <div class="large-12 columns">
   <% if @mood_datum.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@mood_datum.errors.count, "error") %> prohibited this mood_datum from being saved:</h2>
+      <h2><%= pluralize(@mood_datum.errors.count, "error") %> prohibited this mood data from being saved:</h2>
       <ul>
       <% @mood_datum.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -13,23 +13,23 @@
       </ul>
     </div>
   <% end %> 
-      <%= label_tag("mood_datum_entry_at", "How are you feeling today?") %>
+      <%= label_tag("mood_datum_entry_at", "How are you feeling today?", class: 'make-bold') %>
     <br>   
     <% if @mood_datum.entry_at %>
-      <input type="date" name="mood_datum[entry_at]" > 
+      <input type="date" name="mood_datum[entry_at]" value="<%=@mood_datum.entry_at%>"> 
     <% else %>
       <input type="date" name="mood_datum[entry_at]" value="<%=Date.today%>" >
     <% end %> 
    
-    <%= f.label :sleep %><br>
+    <%= f.label :sleep, class: 'make-bold' %><br>
     <%= f.text_field :sleep %> 
  
     <div class="row"> 
-	   <%= f.label :mood %>  
+	   <%= f.label :mood , class: 'make-bold'%>  
 	  <table style="width:100%;">  
     <% PATIENT_MOOD.each do |v|%>  
     <tr>  
-	   <td>
+	   <td width="30">
       <%= f.radio_button(:mood, v[1]) %>  
      </td>
       <td>
@@ -41,11 +41,11 @@
 		 </div>
      <hr>
      <div class="row">  
-	   <%= f.label :irritability %> 
+	   <%= f.label :irritability, class: 'make-bold' %> 
 	  <table style="width:100%;">
     <% PATIENT_IRRITABILITY.each do |v|%> 
     <tr> 
-	   <td>
+	   <td width="30">
     <%= f.radio_button(:irritability, v[1]) %> 
    </td>
    <td> 
@@ -57,11 +57,11 @@
 	   </div> 
 	 <hr> 
 	 <div class="row">  
-    <%= f.label :anxiety %>
+    <%= f.label :anxiety , class: 'make-bold'%>
 	  <table style="width:100%;"> 
     <% PATIENT_IRRITABILITY.each do |v|%>   
      <tr>
-	     <td>
+	     <td width="30">
       <%= f.radio_button(:anxiety, v[1]) %>   
        </td> 
        <td>
@@ -74,9 +74,30 @@
     <%= f.hidden_field :user_id, :value => current_user.id  %>
     <%= f.hidden_field :doctor_id,  :value => current_user.doctor_id %>
 
-    <%= f.label :comments %><br>
-    <%= f.text_area :comments %>
-   
+    <%= f.label :comments, class: 'make-bold'  %><br>
+    <%= f.text_area :comments %>  
+    <%= label_tag("significant_events", "Describe significant events of today", class: 'make-bold') %> 
+    <ul style="list-style-type:none !important;margin-top:20px;" id="add-significant_events-today"> 
+	     <% (1..1).each do |i|%>
+	      <li class="row" id="keep-row-id" data-row-id="<%=i%>" style="clear:both;">  
+				   <div class="large-1 columns small-1" style="text-align:center;"> 
+		       	  *
+		       </div>
+		       <div class="large-10 columns small-10">  
+			        <input type="text" name="significant_events[<%=i%>]" /> 
+			     </div>  
+			     <div class="large-1 columns small-4">  
+				     <a href="javascript:void();" class="remove-add-more-field">Remove</a> 
+				   </div>
+		    </li> 
+		   <% end %>  
+		   
+	  </ul>
+     <div class="row right" style="padding:10px;">  
+
+			     <a href="javascript:void();" id="add-more-button">Add More</a>
+	
+	   </div>
 
    <%= f.submit :value =>"Submit" ,class: 'button success' %> 
   </div>

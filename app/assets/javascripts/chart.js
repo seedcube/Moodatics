@@ -1,6 +1,14 @@
 
 $(function () {
-   var sleep_value = []
+   var sleep_value = []  
+        if($('#container').length)
+        {
+	 
+        }
+        else
+        {
+	         return false
+        } 
         var date_value = $('#container').data('date').split(","); 
         try {
             sleep_value = $('#container').data('sleep').split(","); 

@@ -47,9 +47,12 @@ class MoodDataController < ApplicationController
   # POST /mood_data.json
   def create
     @mood_datum = MoodDatum.new(mood_datum_params)
-
+  
     respond_to do |format|
-      if @mood_datum.save
+      if @mood_datum.save   
+        params['significant_events'].each do |key,value| 
+           PatientSignificantEvent.create(:patient_id =>@mood_datum.user_id ,:doctor_id => @mood_datum.doctor_id ,:mood_data_id =>@mood_datum.id ,:comments => value )
+        end  
         format.html { redirect_to new_mood_datum_path(:patient => current_user.id), notice: 'Mood datum was successfully created.' }
         format.json { render action: 'show', status: :created, location: @mood_datum }
       else
