@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131115080727) do
+ActiveRecord::Schema.define(version: 20140219185209) do
 
   create_table "mood_data", force: true do |t|
     t.datetime "entry_at"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 20131115080727) do
     t.text     "comments"
     t.integer  "user_id"
     t.integer  "doctor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "patient_significant_events", force: true do |t|
+    t.text     "comments"
+    t.integer  "patient_id"
+    t.integer  "doctor_id"
+    t.integer  "mood_data_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
