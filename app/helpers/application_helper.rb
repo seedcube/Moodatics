@@ -1,12 +1,14 @@
 module ApplicationHelper  
   
-  def show_mood(id)
-    if id == 1  
-      "Depressed"
+  def show_mood(id)  
+    if id == 0  
+        "None"
+    elsif id == 1  
+      "Mild"
     elsif id == 2  
-       "Normal"
+       "Moderate"
     elsif id == 3
-       "Elevated"
+       "Severe"
     else 
        ""
     end     
@@ -20,7 +22,7 @@ module ApplicationHelper
     elsif id == 2
        "Moderate"
     elsif id == 3
-       "Savere"
+       "Severe"
     else 
       ""
     end  
@@ -33,7 +35,7 @@ module ApplicationHelper
     elsif id == 2
        "Moderate"
     elsif id == 3
-       "Savere"
+       "Severe"
     else 
       ""
     end

@@ -6,8 +6,15 @@ class MoodDataController < ApplicationController
   def index   
       if params[:user]   
         @user = User.find(params[:user])  
-        @datas = []
-        @mood_data = @user.mood_data    
+        @datas = [] 
+        end_date = Date.today - 7.days 
+        start_date = Date.today  
+        if params[:start_date] && params[:end_date]
+           end_date = Date.parse(params[:end_date]) 
+           start_date = Date.parse(params[:start_date])
+        end
+        #raise start_date.inspect
+        @mood_data = @user.mood_data.where(:entry_at => start_date..end_date)    
         if @mood_data.size > 7
            @mood_data = @mood_data.limit(7).order('created_at DESC') 
            @mood_data.each do |d|
@@ -49,10 +56,12 @@ class MoodDataController < ApplicationController
     @mood_datum = MoodDatum.new(mood_datum_params)
   
     respond_to do |format|
-      if @mood_datum.save   
-        params['significant_events'].each do |key,value| 
-           PatientSignificantEvent.create(:patient_id =>@mood_datum.user_id ,:doctor_id => @mood_datum.doctor_id ,:mood_data_id =>@mood_datum.id ,:comments => value )
-        end  
+      if @mood_datum.save  
+        if params['significant_events']
+          params['significant_events'].each do |key,value| 
+             PatientSignificantEvent.create(:patient_id =>@mood_datum.user_id ,:doctor_id => @mood_datum.doctor_id ,:mood_data_id =>@mood_datum.id ,:comments => value )
+          end    
+        end
         format.html { redirect_to new_mood_datum_path(:patient => current_user.id), notice: 'Mood datum was successfully created.' }
         format.json { render action: 'show', status: :created, location: @mood_datum }
       else

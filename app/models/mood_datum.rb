@@ -4,5 +4,7 @@ class MoodDatum < ActiveRecord::Base
   validates :sleep, presence: true  
   validates :irritability, presence: true  
   validates :mood, presence: true  
-  validates :anxiety, presence: true  
+  validates :anxiety, presence: true 
+  
+   
 end

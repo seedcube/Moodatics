@@ -1,5 +1,5 @@
-<fieldset>
-
+<fieldset>    
+	<legend>How are you feeling today?</legend>  
 <%= form_for(@mood_datum, :id => 'mood_data') do |f| %>  
 <div class="row">    
 	   <div class="large-12 columns">
@@ -13,7 +13,7 @@
       </ul>
     </div>
   <% end %> 
-      <%= label_tag("mood_datum_entry_at", "How are you feeling today?", class: 'make-bold') %>
+      <%= label_tag("mood_datum_entry_at", "Date", class: 'make-bold') %>
     <br>   
     <% if @mood_datum.entry_at %>
       <input type="date" name="mood_datum[entry_at]" value="<%=@mood_datum.entry_at%>"> 
@@ -77,27 +77,22 @@
     <%= f.label :comments, class: 'make-bold'  %><br>
     <%= f.text_area :comments %>  
     <%= label_tag("significant_events", "Describe significant events of today", class: 'make-bold') %> 
-    <ul style="list-style-type:none !important;margin-top:20px;" id="add-significant_events-today"> 
-	     <% (1..1).each do |i|%>
-	      <li class="row" id="keep-row-id" data-row-id="<%=i%>" style="clear:both;">  
-				   <div class="number large-1 columns small-1" style="text-align:center;"> 
-		       	  <%= i %>
-		       </div>
-		       <div class="large-10 columns small-10">  
-			        <input type="text" name="significant_events[<%=i%>]" /> 
-			     </div>  
-			     <div class="large-1 columns small-4">  
-				     <a href="javascript:void();" class="remove-add-more-field button tiny alert">Remove</a> 
-				   </div>
-		    </li> 
-		   <% end %>  
+    <ul style="list-style-type:none !important;margin-top:20px;" id="add-significant_events-today" data-row-id="1"> 
+	     
 		   
 	  </ul>
-     <div class="row right" style="padding:10px;">  
-    	     <a href="javascript:void();" id="add-more-button" class="button success">Add More</a>
-	   </div>
-
-   <%= f.submit :value =>"Submit" ,class: 'button success' %> 
+     <div class="row" style="padding:10px;"> 
+	         
+		       <div class="large-10 columns small-10">  
+			        <input type="text" id="significant_value"  /> 
+			     </div>  
+			     <div class="large-2 columns small-4">  
+				      <a href="javascript:void();" id="add-more-button" class="button success tiny">Add More</a> 
+				   </div>
+     </div>
+    <div class="row" style="padding:10px;">
+      <%= f.submit :value =>"Submit" ,class: 'button success' %> 
+    </div>
   </div>
 </div>
 <% end %>    

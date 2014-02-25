@@ -1,0 +1,36 @@
+<script> 
+$(function () {
+        $('#container2').highcharts({
+            title: {
+                text: 'Irritability',
+                x: -20 //center
+            },
+            xAxis: { 
+	
+                categories: [ 
+                              <% @mood_data.each do |t| %> 
+                                '<%= t.entry_at.strftime("%m/%d/%y") %>',  
+                              <% end %>
+                            ]
+            },
+            yAxis: {
+                categories: ['None', 'Mild', 'Moderate', 'Severe']
+            },
+            tooltip: {
+                valueSuffix: '°C'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                data: <%= @mood_data.map{|vv| vv.irritability }%>
+            }
+          ]
+        });
+    });  
+
+</script> 
+    

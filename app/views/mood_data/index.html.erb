@@ -6,9 +6,40 @@
 <% if @user %>
 Patient: <%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %> 
 <% end %>
-</h4>  
-<div id="container" style="padding-bottom:50px;" data-date='<%=@mood_data.map{|vv| vv.entry_at.strftime("%d %b") }.join(",")%>' data-sleep='<%=@mood_data.map{|vv| vv.sleep }.join(",")%>' >
+</h4>   
+<div class="row"> 
+	<form id="chart_form">
+	 <div class="large-4 columns small-12"> 
+		<label>Start Date</label>
+    <input type="date" name="start_date" class="required" value="<%=params[:start_date]%>"> 
+   </div>
+   <div class="large-4 columns small-12">
+	  <label>End Date</label>   
+    <input type="date" name="end_date" class="required" value="<%=params[:end_date]%>"> 
+   </div> 
+   <input type="hidden" name="user" value="<%=params[:user]%>"> 
+   <div class="large-4 columns small-12">
+	  <label>&nbsp;</label>   
+    <button type="submit">Submit</button>
+   </div>
+  </form> 
+</div>  
+<% if @mood_data && @mood_data.size > 0 %>
+<%= render :partial => '/charts/irritability' %>    
+<%= render :partial => '/charts/mood' %>
+<%= render :partial => '/charts/anxiety' %>
+<div class="row">
+<div class="large-12 columns small-12" id="container1" style="padding-bottom:50px;" data-date='<%=@mood_data.map{|vv| vv.entry_at.strftime("%d %b") }.join(",")%>' data-sleep='<%=@mood_data.map{|vv| vv.sleep }.join(",")%>' >
 </div>
+<div class="large-12 columns small-12" id="container2" style="padding-bottom:50px;" data-date='<%=@mood_data.map{|vv| vv.entry_at.strftime("%d %b") }.join(",")%>' data-sleep='<%=@mood_data.map{|vv| vv.sleep }.join(",")%>' >
+</div>
+<div class="large-12 columns small-12" id="container3" style="padding-bottom:50px;" data-date='<%=@mood_data.map{|vv| vv.entry_at.strftime("%d %b") }.join(",")%>' data-sleep='<%=@mood_data.map{|vv| vv.sleep }.join(",")%>' >
+</div> 
+<div class="large-12 columns small-12" id="container" style="padding-bottom:50px;" data-date='<%=@mood_data.map{|vv| vv.entry_at.strftime("%d %b") }.join(",")%>' data-sleep='<%=@mood_data.map{|vv| vv.sleep }.join(",")%>' >
+</div>
+
+</div> 
+<% end %>
 
 <div class="report-class-large">
 	<table style="width:100%">
@@ -23,7 +54,7 @@ Patient: <%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %>
 						</td>
 						<td>
 						
-						       ELEVATED
+						       Mild
 						</td>
 				   	 <td style="width:20px;">  
 				        	<div style="height:20px;width:20px;background:#33FF00;float:lefft"> 
@@ -31,7 +62,7 @@ Patient: <%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %>
 							    </div>  
 							</td>
 							<td> 
-					       NORMAL
+					       Moderate
 					   
 					 </td>
 					 <td style="width:20px;">  
@@ -40,7 +71,7 @@ Patient: <%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %>
 						    </div>  
 						</td>
 						<td>
-					       DEPRESSED
+					       Severe
 				   </td>
 					 
 			 </tr>
