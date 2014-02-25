@@ -25,7 +25,10 @@
 				<li>  
 				<% end %>	
 				<% if current_user.role_id == 2 %> 
-				   <li class="divider"></li>
+				   <li class="divider"></li> 
+				     <li class="has-form">
+					    <%= link_to "Data Analytics", mood_data_path(:user => current_user.id) %>   
+					   </li>
 			      <li class="has-form">
 				    <%= link_to "Add Mood Data", new_mood_datum_path(:patient => current_user.id) %>   
 				   </li>

@@ -2,7 +2,7 @@
 $(function () {
         $('#container1').highcharts({
             title: {
-                text: 'Mood',
+                text: 'Mood - Analytics',
                 x: -20 //center
             },
             xAxis: { 
@@ -14,10 +14,14 @@ $(function () {
                             ]
             },
             yAxis: {
-                categories: ['None', 'Mild', 'Moderate', 'Severe']
+                categories: ['0', 'Mild', 'Moderate', 'Severe'],
+                lineColor: '#FF0000',
+								lineWidth: 1,
+								min: 0, 
+								max: 3
             },
             tooltip: {
-                valueSuffix: '°C'
+              
             },
             legend: {
                 layout: 'vertical',

@@ -1,7 +1,3 @@
-
-
-
-
 <h4>  
 <% if @user %>
 Patient: <%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %> 
@@ -27,7 +23,8 @@ Patient: <%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %>
 <% if @mood_data && @mood_data.size > 0 %>
 <%= render :partial => '/charts/irritability' %>    
 <%= render :partial => '/charts/mood' %>
-<%= render :partial => '/charts/anxiety' %>
+<%= render :partial => '/charts/anxiety' %>  
+<%= render :partial => '/charts/sleep' %>   
 <div class="row">
 <div class="large-12 columns small-12" id="container1" style="padding-bottom:50px;" data-date='<%=@mood_data.map{|vv| vv.entry_at.strftime("%d %b") }.join(",")%>' data-sleep='<%=@mood_data.map{|vv| vv.sleep }.join(",")%>' >
 </div>
@@ -40,7 +37,7 @@ Patient: <%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %>
 
 </div> 
 <% end %>
-
+<!--
 <div class="report-class-large">
 	<table style="width:100%">
 		   <tr> 
@@ -76,7 +73,9 @@ Patient: <%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %>
 					 
 			 </tr>
 	</table>	
-</div>
+</div>  
+
+
 <div class="report-class-small">  
 	
 	<table style="width:100%">
@@ -120,8 +119,30 @@ Patient: <%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %>
 	
 	
 </div>		
+-->   
 
+<script> 
+ function show_records(){  
 
+	$('#records').show();
+	$('#show_records').hide(); 
+	$('#hide_records').show();   
+	
+} 
+function hide_records(){  
+  $('#records').hide();
+	$('#hide_records').hide();  
+	$('#show_records').show();
+
+}
+</script>
+<div class="row">
+	<div class="large-2 columns small-4" style="float:right;">  
+      <a href="javascript:void();" class="button success tiny" id="show_records" onclick="show_records();">Show Records</a> 
+      <a href="javascript:void();" class="button success tiny" id="hide_records" style="display:none;" onclick="hide_records();">Hide Records</a> 
+   </div>
+</div>	
+<div class="row"  style="display:none !important;" id="records">
 <div class="report-class-large">
 <table style="width:100%">
   <thead>
@@ -207,7 +228,8 @@ Patient: <%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %>
 		  </tr>
 	   <% end %>
 	</table>
-</div>	
+</div> 
+</div> 
 <br>   
 
 

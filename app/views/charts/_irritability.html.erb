@@ -1,8 +1,11 @@
 <script> 
-$(function () {
+$(function () {  
+	
+	
+	
         $('#container2').highcharts({
             title: {
-                text: 'Irritability',
+                text: 'Irritability - Analytics',
                 x: -20 //center
             },
             xAxis: { 
@@ -14,10 +17,19 @@ $(function () {
                             ]
             },
             yAxis: {
-                categories: ['None', 'Mild', 'Moderate', 'Severe']
-            },
+                categories: ['0', 'Mild', 'Moderate', 'Severe'],
+                lineColor: '#FF0000',
+								lineWidth: 1,
+								min: 0, 
+								max: 3
+            },  
+            plotOptions: {
+						            categories: {
+						                colorByPoint: true
+						            }
+						},
             tooltip: {
-                valueSuffix: '°C'
+               
             },
             legend: {
                 layout: 'vertical',

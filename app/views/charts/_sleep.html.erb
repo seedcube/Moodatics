@@ -1,8 +1,9 @@
 <script> 
-$(function () {
-        $('#container3').highcharts({
+$(function () {  
+	
+	      $('#container').highcharts({
             title: {
-                text: 'Anxiety - Analytics',
+                text: 'Sleep Chart',
                 x: -20 //center
             },
             xAxis: { 
@@ -13,13 +14,17 @@ $(function () {
                               <% end %>
                             ]
             },
-           	yAxis: {
-                categories: ['0', 'Mild', 'Moderate', 'Severe'],
+            yAxis: {
                 lineColor: '#FF0000',
 								lineWidth: 1,
 								min: 0, 
-								max: 3
-            },
+								max: 24
+            },  
+            plotOptions: {
+						            categories: {
+						                colorByPoint: true
+						            }
+						},
             tooltip: {
                
             },
@@ -30,10 +35,11 @@ $(function () {
                 borderWidth: 0
             },
             series: [{
-                data: <%= @mood_data.map{|vv| vv.anxiety }%>
+                data: <%= @mood_data.map{|vv| vv.sleep }%>
             }
           ]
         });
     });  
 
-</script>
+</script> 
+    
