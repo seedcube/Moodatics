@@ -13,8 +13,13 @@ class MoodDataController < ApplicationController
            end_date = Date.parse(params[:end_date]) 
            start_date = Date.parse(params[:start_date])
         end
-        #raise start_date.inspect
-        @mood_data = @user.mood_data.where(:entry_at => start_date..end_date)    
+       
+        @mood_data = @user.mood_data.where(:entry_at => start_date..end_date)
+        begin 
+          @daycount = @user.mood_data.where(:entry_at => start_date..end_date).group("date(entry_at)").size.size
+        rescue 
+          @daycount = @user.mood_data.where(:entry_at => start_date..end_date).count 
+        end
         if @mood_data.size > 7
            @mood_data = @mood_data.limit(7).order('created_at DESC') 
            @mood_data.each do |d|

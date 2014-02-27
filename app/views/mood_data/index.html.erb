@@ -27,11 +27,110 @@ Patient: <%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %>
 <%= render :partial => '/charts/sleep' %>   
 <div class="row">
 <div class="large-12 columns small-12" id="container1" style="padding-bottom:50px;" data-date='<%=@mood_data.map{|vv| vv.entry_at.strftime("%d %b") }.join(",")%>' data-sleep='<%=@mood_data.map{|vv| vv.sleep }.join(",")%>' >
+</div> 
+<div class="large-12 columns small-12" id="container11">
+		<table style="width:100%">
+			   <tr> 
+				     <td> 
+					      Total Day Count
+					   </td> 
+					   <td> 
+					      Mood Count
+					   </td>
+					  <td> 
+					      Moderate count
+					   </td>
+					   <td> 
+					      Severe count 
+					   </td>
+					</tr> 
+				 <tr>  
+						 <td> 
+					      <%= @daycount %>
+					   </td> 
+					   <td> 
+					     <%= @mood_data.where(:mood => 1).count -%>
+					   </td>
+					  <td> 
+					     <%= @mood_data.where(:mood => 2).count %> 
+					   </td>
+					   <td> 
+					      <%= @mood_data.where(:mood => 3).count  %>  
+					   </td>
+				 </tr>
+		</table>
+  
 </div>
 <div class="large-12 columns small-12" id="container2" style="padding-bottom:50px;" data-date='<%=@mood_data.map{|vv| vv.entry_at.strftime("%d %b") }.join(",")%>' data-sleep='<%=@mood_data.map{|vv| vv.sleep }.join(",")%>' >
+</div>  
+<div class="large-12 columns small-12" id="container22"> 
+	<table style="width:100%">
+		   <tr> 
+			     <td> 
+				      Total Day Count
+				   </td> 
+				   <td> 
+				      Mood Count
+				   </td>
+				  <td> 
+				      Moderate count
+				   </td>
+				   <td> 
+				      Severe count 
+				   </td>
+				</tr> 
+			 <tr>  
+					 <td> 
+				      <%= @daycount %> 
+				   </td> 
+				   <td> 
+				     <%= @mood_data.where(:irritability => 1).count -%>
+				   </td>
+				  <td> 
+				     <%= @mood_data.where(:irritability => 2).count %> 
+				   </td>
+				   <td> 
+				      <%= @mood_data.where(:irritability => 3).count  %>  
+				   </td>
+			 </tr>
+	</table>
 </div>
 <div class="large-12 columns small-12" id="container3" style="padding-bottom:50px;" data-date='<%=@mood_data.map{|vv| vv.entry_at.strftime("%d %b") }.join(",")%>' data-sleep='<%=@mood_data.map{|vv| vv.sleep }.join(",")%>' >
 </div> 
+<div class="large-12 columns small-12" id="container33"> 
+	
+	<table style="width:100%">
+		   <tr> 
+			     <td> 
+				      Total Day Count
+				   </td> 
+				   <td> 
+				      Mood Count
+				   </td>
+				  <td> 
+				      Moderate count
+				   </td>
+				   <td> 
+				      Severe count 
+				   </td>
+				</tr> 
+			 <tr>  
+					 <td> 
+				      <%= @daycount %> 
+				   </td> 
+				   <td> 
+				     <%= @mood_data.where(:anxiety => 1).count -%>
+				   </td>
+				  <td> 
+				     <%= @mood_data.where(:anxiety => 2).count %> 
+				   </td>
+				   <td> 
+				      <%= @mood_data.where(:anxiety => 3).count  %>  
+				   </td>
+			 </tr>
+	</table>
+	
+</div>
 <div class="large-12 columns small-12" id="container" style="padding-bottom:50px;" data-date='<%=@mood_data.map{|vv| vv.entry_at.strftime("%d %b") }.join(",")%>' data-sleep='<%=@mood_data.map{|vv| vv.sleep }.join(",")%>' >
 </div>
 
