@@ -1,8 +1,8 @@
 <script> 
 $(function () {
-        $('#container1').highcharts({
+       chart = $('#container1').highcharts({
             title: {
-                text: 'Mood - Analytics',
+                text: 'Mood',
                 x: -20 //center
             },
             xAxis: { 
@@ -14,13 +14,36 @@ $(function () {
                             ]
             },
             yAxis: {
-                categories: ['Mild', 'Moderate', 'Severe'],
+             
                 lineColor: '#FF0000',
-							  min: 0, 
-								max: 3
+							  min: 1, 
+								max: 3,
+								allowDecimals: false,
+								labels: {
+								         formatter: function() { 
+									          if(this.value == 1){ 
+									            return "Mild" 
+									          }else if(this.value == 2){
+										          return "Moderate"  
+									          }else if(this.value == 3){
+										          return "Severe" 
+									          }
+				                        
+				                }
+								   }
+               
             },
             tooltip: {
-              
+               formatter: function() { 
+				          if(this.y == 1){ 
+				            return this.x + "- Mild" 
+				          }else if(this.y == 2){
+					          return this.x + " - Moderate"  
+				          }else if(this.y == 3){
+					          return this.x + " - Severe" 
+				          }
+                      
+              }
             },
             legend: {
                 layout: 'vertical',
@@ -28,11 +51,14 @@ $(function () {
                 verticalAlign: 'middle',
                 borderWidth: 0
             },
-            series: [{
+            series: [{   
+	              name: 'Mood',
                 data: <%= @mood_data.map{|vv| vv.mood }%>
             }
           ]
-        });
+        }); 
+
+      	
     });  
 
 </script> 

@@ -6,5 +6,13 @@ class MoodDatum < ActiveRecord::Base
   validates :mood, presence: true  
   validates :anxiety, presence: true 
   
-   
+  def mood_name 
+     if self.mood == 1
+       return  'Mild'
+     elsif self.mood == 2
+       return 'Moderate'
+     elsif self.mood == 3  
+       return 'Severe'
+     end      
+  end   
 end

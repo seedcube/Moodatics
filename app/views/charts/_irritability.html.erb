@@ -5,7 +5,7 @@ $(function () {
 	
         $('#container2').highcharts({
             title: {
-                text: 'Irritability - Analytics',
+                text: 'Irritability',
                 x: -20 //center
             },
             xAxis: { 
@@ -17,17 +17,36 @@ $(function () {
                             ]
             },
             yAxis: {
-                categories: ['Mild', 'Moderate', 'Severe'],
-                min: 0, 
-								max: 3
-            },  
-            plotOptions: {
-						            categories: {
-						                colorByPoint: true
-						            }
-						},
-            tooltip: {
+             
+                lineColor: '#FF0000',
+							  min: 1, 
+								max: 3,
+								allowDecimals: false,
+								labels: {
+								         formatter: function() { 
+									          if(this.value == 1){ 
+									            return "Mild" 
+									          }else if(this.value == 2){
+										          return "Moderate"  
+									          }else if(this.value == 3){
+										          return "Severe" 
+									          }
+				                        
+				                }
+								   }
                
+            },
+            tooltip: {
+               formatter: function() { 
+				          if(this.y == 1){ 
+				            return this.x + "- Mild" 
+				          }else if(this.y == 2){
+					          return this.x + " - Moderate"  
+				          }else if(this.y == 3){
+					          return this.x + " - Severe" 
+				          }
+                      
+              }
             },
             legend: {
                 layout: 'vertical',
@@ -35,7 +54,8 @@ $(function () {
                 verticalAlign: 'middle',
                 borderWidth: 0
             },
-            series: [{
+            series: [{ 
+	              name: 'Irritability',
                 data: <%= @mood_data.map{|vv| vv.irritability }%>
             }
           ]

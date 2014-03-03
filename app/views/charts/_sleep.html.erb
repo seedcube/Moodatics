@@ -3,7 +3,7 @@ $(function () {
 	
 	      $('#container').highcharts({
             title: {
-                text: 'Sleep Chart',
+                text: 'Hours Slept',
                 x: -20 //center
             },
             xAxis: { 
@@ -25,7 +25,9 @@ $(function () {
 						            }
 						},
             tooltip: {
-               
+               title: {
+								    text: 'Hrs Slept'
+								}
             },
             legend: {
                 layout: 'vertical',
@@ -33,7 +35,8 @@ $(function () {
                 verticalAlign: 'middle',
                 borderWidth: 0
             },
-            series: [{
+            series: [{  
+	              name: 'Hrs Slept ',
                 data: <%= @mood_data.map{|vv| vv.sleep }%>
             }
           ]
