@@ -1,16 +1,28 @@
 Moodatics::Application.routes.draw do
 
+  match "admin"  => "business_admin#index", as: 'admin' , :via => :get 
+  
+  match 'delete-user/:user_id'  => "business_admin#delete_doctor", :via => :delete, :as => :delete_user  
+ # devise_for :patients
+  resources :patients
+
+  devise_for :users, :controllers => { :sessions => "sessions" } do 
+   get 'login', to: 'sessions#new', as: 'login'
+   get 'signup', to: 'users#new', as: 'signup'    
+   match "/users/sign_out" => "devise/sessions#destroy", :as =>"destroy_user_session" , :via => :delete  
+  end   
+  
   get "graph/index"
   get "doctor_dashboard/index"
   get "patient_dashboard/index"
   resources :mood_data
 
-  resources :users  
-  resources :sessions 
+ # resources :users  
+ # resources :sessions 
   
-  get 'signup', to: 'users#new', as: 'signup'
-  get 'login', to: 'sessions#new', as: 'login'
-  get 'logout', to: 'sessions#destroy', as: 'logout'
+ # get 'signup', to: 'users#new', as: 'signup'
+ # get 'login', to: 'sessions#new', as: 'login'
+ # get 'logout', to: 'sessions#destroy', as: 'logout'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
