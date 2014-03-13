@@ -1,5 +1,5 @@
-class UsersController < ApplicationController  
-  before_filter :authorize,  only: [:show, :edit, :update, :destroy]   
+class UsersController < Devise::SessionsController    
+  #before_filter :authorize,  only: [:show, :edit, :update, :destroy]   
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -35,7 +35,8 @@ class UsersController < ApplicationController
 
   # POST /users
   # POST /users.json
-  def create
+  def create    
+    raise
     @user = User.new(user_params)
 
     respond_to do |format|

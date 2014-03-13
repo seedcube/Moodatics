@@ -1,16 +1,22 @@
 <fieldset>
    <legend>Log In</legend>
 
-<%= form_tag sessions_path do %>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>   
  <div class="row">
-	  <div class="large-6 columns">
-   		  <%= label_tag :email %><br />
-		    <%= text_field_tag :email, params[:email], :placeholder => 'Email' %>
-		    <%= label_tag :password %><br />
-		    <%= password_field_tag :password ,"", :placeholder => 'Password' %> 
+	  <div class="large-6 columns"> 
+		
+	   	 <%= f.label :login %><br />
+			  <%= f.text_field :login, :autofocus => true %>
+
+			  <%= f.label :password %><br />
+			  <%= f.password_field :password %>
+
+			  <% if devise_mapping.rememberable? -%>
+			    <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+			  <% end -%>
 		    <%= submit_tag "Log In", class: 'button success ' %>   
    	</div>
  </div>
 <% end %>   
-
+  <%= render "devise/shared/links" %>   
 </fieldset>

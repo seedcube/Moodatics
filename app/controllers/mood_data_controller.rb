@@ -1,5 +1,5 @@
 class MoodDataController < ApplicationController 
-  before_filter :authorize
+  before_filter :authenticate_user!    
   before_action :set_mood_datum, only: [:show, :edit, :update, :destroy]
   # GET /mood_data
   # GET /mood_data.json

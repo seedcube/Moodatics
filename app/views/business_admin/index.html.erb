@@ -1,0 +1,76 @@
+<h4>Doctors List</h4>
+<div class="report-class">
+<table style="width:100%;">
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Middle name</th>
+      <th>Email</th>
+      <th></th> 
+      <th></th>  
+      </tr>
+  </thead>
+
+  <tbody> 
+	  <% if @users && @users.size > 0%>  
+    <% @users.each do |user| %> 
+       
+      <tr>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.middle_name %></td>
+        <td><%= user.email %></td>   
+        <td> <a  href="javascript:void();" onclick="$('#id-<%=user.id%>').toggle();" class="button tiny">Patients List</a></td>   
+        <td><%= link_to 'Delete', delete_user_path(user), method: :delete, data: { confirm: 'Are you sure? This is delete all patients of this doctor' }, class: 'button tiny' %> </td>    
+        
+      </tr> 
+          <% @patients = User.where(:doctor_id => user.id) %> 
+       <% if @patients && @patients.size > 0 %> 
+     
+      <tr id="id-<%=user.id%>" style="display:none;"> 
+	        <td colspan="7" style="padding:5%;background:#666699"> 
+		            Patient List  <br>
+						      
+		      	<table style="width:90%;">
+						  <thead>
+						    <tr>
+						      <th>First name</th>
+						      <th>Last name</th>
+						      <th>Middle name</th>
+						      <th>Email</th>
+						      <th></th> 
+						        
+						      </tr>
+						  </thead>  
+				 <% @patients.each do |patient|%>  
+						<tr>
+	        <td><%= patient.first_name %></td>
+	        <td><%= patient.last_name %></td>
+	        <td><%= patient.middle_name %></td>
+	        <td><%= patient.email %></td>   
+	        <td><%= link_to 'Delete', delete_user_path(patient), method: :delete, data: { confirm: 'Are you sure?' }, class: 'button tiny' %> </td>
+	       </tr>  
+	       <% end %>
+	        </table>
+	        </td>
+	    </tr>        
+	    <% else %> 
+	       <tr id="id-<%=user.id%>" style="display:none;"> 
+	        <td colspan="7" style="padding:5%;background:#666699">  
+		          No Patient Found
+		      </td>
+		      </tr>
+	    <% end %>
+    <% end %>  
+    <% else %>  
+        <tr> 
+	            <td colspan="7">  
+		          No Doctor Listed
+		          </td>
+	      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div> 
+<br>
