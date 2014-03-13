@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
-
+ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
 
 # Use sqlite3 as the database for Active Record  
 gem 'mysql2'   
 gem 'sqlite3'
+gem 'devise'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -62,6 +63,34 @@ gem 'capistrano-bundler'
 # if you are using RBENV
 gem 'capistrano-rbenv', "~> 2.0" 
   
-gem 'thin'   
+gem 'thin'  
+
+group :development do
+  gem 'guard'
+  gem 'guard-rspec', require: false
+  gem 'guard-livereload', require: false
+  gem 'rack-livereload'
+  gem 'terminal-notifier-guard'
+  gem 'rubocop'
+  gem 'rails_best_practices'
+  gem 'quiet_assets' 
+  gem 'mailcatcher'   
+end
+
+group :development, :test do
+  gem 'sqlite3'
+  gem 'rspec-rails'
+  gem 'cucumber-rails', require: false
+end
+
+group :test do
+  gem 'selenium-webdriver'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'simplecov'
+end  
+
+
 
 
