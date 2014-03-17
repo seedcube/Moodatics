@@ -3,6 +3,9 @@ Moodatics::Application.routes.draw do
   match "admin"  => "business_admin#index", as: 'admin' , :via => :get 
   
   match 'delete-user/:user_id'  => "business_admin#delete_doctor", :via => :delete, :as => :delete_user  
+  match 'edit-user/:user_id'  => "business_admin#edit_doctor", :via => :get, :as => :edit_user   
+  match 'update-user/:user_id'  => "business_admin#update_doctor", :via => :put, :as => :update_user
+  
  # devise_for :patients
   resources :patients
 
