@@ -1,5 +1,8 @@
 Moodatics::Application.routes.draw do
+  
+  resources :doctors
 
+         
   match "admin"  => "business_admin#index", as: 'admin' , :via => :get 
   
   match 'delete-user/:user_id'  => "business_admin#delete_doctor", :via => :delete, :as => :delete_user  
@@ -12,7 +15,8 @@ Moodatics::Application.routes.draw do
   devise_for :users, :controllers => { :sessions => "sessions" } do 
    get 'login', to: 'sessions#new', as: 'login'
    get 'signup', to: 'users#new', as: 'signup'    
-   match "/users/sign_out" => "devise/sessions#destroy", :as =>"destroy_user_session" , :via => :delete  
+   match "/users/sign_out" => "devise/sessions#destroy", :as =>"destroy_user_session" , :via => :delete    
+  
   end   
   
   get "graph/index"

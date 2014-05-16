@@ -29,9 +29,11 @@ class PatientsController < ApplicationController
     @patient = Patient.new(patient_params)
     @patient.doctor_id = current_user.id
     @patient.role_id = 2  
-
+    
+    
     respond_to do |format|
-      if @patient.save
+      if @patient.save   
+      
         format.html { redirect_to patients_path , notice: 'Patient was successfully created.' }
         format.json { render action: 'show', status: :created, location: @patient }
       else

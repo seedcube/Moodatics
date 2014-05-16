@@ -34,7 +34,10 @@
 				   </li>
 				<% end %>  
 				 <% if current_user.role_id == 3 %> 
-					     <li class="divider"></li> 
+					     <li class="divider"></li>  
+					     <li class="has-form">
+       						<%= link_to "Add Doctor", new_doctor_path %>  
+       				 <li>
 					     <li class="has-form">
 						    <%= link_to "Doctor List", admin_path %>   
 						   </li>

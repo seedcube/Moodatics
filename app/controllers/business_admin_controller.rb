@@ -1,4 +1,5 @@
-class BusinessAdminController < ApplicationController
+class BusinessAdminController < ApplicationController  
+  before_filter :only_bussiness_admin 
   def index    
       @users = User.where(:role_id => 1)   
   end
@@ -35,5 +36,7 @@ class BusinessAdminController < ApplicationController
   end  
   def user_params
     params.require(:user).permit(:first_name, :last_name, :middle_name, :email, :password, :username, :password_confirmation)
-  end
+  end  
+  
+  
 end

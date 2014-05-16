@@ -5,7 +5,13 @@ class ApplicationController < ActionController::Base
   
   before_filter :configure_permitted_parameters, if: :devise_controller?
   
-
+  def only_bussiness_admin
+    if current_user.role_id == 3
+    else 
+       flash[:alert] = "You don't have permission on given url"
+       redirect_to root_path  and return
+    end
+  end
   
   private
 

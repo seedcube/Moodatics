@@ -1,7 +1,8 @@
 class Patient < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
- 
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
      
   self.table_name = :users 
   
@@ -15,7 +16,10 @@ class Patient < ActiveRecord::Base
   validates :password_confirmation, presence: true  
   validates :username, uniqueness: true , presence: true 
   
-  attr_accessor  :password, :password_confirmation
+
+ 
+ 
+ 
   
   has_many :mood_data  
   

@@ -19,7 +19,9 @@ class SessionsController < Devise::SessionsController
       if self.resource.role_id == 1 
            redirect_to patients_path(:doctor => current_user.id), notice: "Logged in!" 
       elsif self.resource.role_id == 2
-           redirect_to new_mood_datum_path(:patient => current_user.id), notice: "Logged in!"  
+           redirect_to new_mood_datum_path(:patient => current_user.id), notice: "Logged in!"
+      elsif self.resource.role_id == 3
+           redirect_to '/admin' , notice: "Logged in!"       
       else   
            redirect_to root_url, notice: "Logged in!" 
       end
