@@ -77,7 +77,21 @@ $( document ).ready(function() {
 	      range: [1, 24],    
 	      number: true
 	    },
-	  }
+	    "mood_datum[mood]": {
+	      required: true 
+	    }, 
+	    "mood_datum[irritability]": {
+	      required: true 
+	    },  
+	    "mood_datum[anxiety]": {
+	      required: true 
+	    }
+    },
+		errorPlacement: function(error, element) {  
+			if(element.attr('name') == 'mood_datum[mood]' || element.attr('name') == 'mood_datum[irritability]' || element.attr('name') == 'mood_datum[anxiety]'){  
+				error.appendTo( element.parent().next() );               
+			} 
+		},
 	
    }); 
 
