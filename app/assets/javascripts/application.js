@@ -16,7 +16,8 @@
 //= require turbolinks 
 //= require highcharts   
 //= require chart  
-//= require jquery.validate.min.js
+//= require jquery.validate.min.js  
+//= require jquery.ui.all 
 
 
 $(document).foundation();    
@@ -88,9 +89,14 @@ $( document ).ready(function() {
 	    }
     },
 		errorPlacement: function(error, element) {  
-			if(element.attr('name') == 'mood_datum[mood]' || element.attr('name') == 'mood_datum[irritability]' || element.attr('name') == 'mood_datum[anxiety]'){  
-				error.appendTo( element.parent().next() );               
-			} 
+		 if(element.attr('name') == 'mood_datum[mood]' || element.attr('name') == 'mood_datum[irritability]' || element.attr('name') == 'mood_datum[anxiety]'){  
+			 
+				 error.appendTo(element.parent().parent().parent().parent().parent());                
+		  }
+		else
+		{
+			  error.appendTo( element.parent());   
+		} 
 		},
 	
    }); 
@@ -136,6 +142,7 @@ function remove_more_significat_field(ele){
       i = i + 1
     });
 	  
-}
+} 
+
 
 

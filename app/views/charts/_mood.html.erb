@@ -17,16 +17,24 @@ $(function () {
              
                 lineColor: '#FF0000',
 							  min: 1, 
-								max: 3,
+								max: 7,
 								allowDecimals: false,
 								labels: {
 								         formatter: function() { 
 									          if(this.value == 1){ 
-									            return "Mild" 
+									            return "Mild depression" 
 									          }else if(this.value == 2){
-										          return "Moderate"  
+										          return "Moderate depression"  
 									          }else if(this.value == 3){
-										          return "Severe" 
+										          return "Severe depression" 
+									          }else if(this.value == 4){ 
+									            return "Normal" 
+									          }else if(this.value == 5){
+										          return "Mild Elation"  
+									          }else if(this.value == 6){
+										          return "Moderate Elation" 
+									          }else if(this.value == 7){
+										          return "Severe Elation" 
 									          }
 				                        
 				                }
@@ -36,11 +44,19 @@ $(function () {
             tooltip: {
                formatter: function() { 
 				          if(this.y == 1){ 
-				            return this.x + "- Mild" 
+				            return this.x + "- Mild depression" 
 				          }else if(this.y == 2){
-					          return this.x + " - Moderate"  
+					          return this.x + " - Moderate depression"  
 				          }else if(this.y == 3){
-					          return this.x + " - Severe" 
+					          return this.x + " - Severe depression" 
+				          }else if(this.y == 4){ 
+				            return this.x + "- Normal" 
+				          }else if(this.y == 5){
+					          return this.x + " - Mild Elation"  
+				          }else if(this.y == 6){
+					          return this.x + " - Moderate Elation" 
+				          }else if(this.y == 7){
+					          return this.x + " - Severe Elation" 
 				          }
                       
               }

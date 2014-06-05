@@ -1,3 +1,21 @@
+<script> 
+$(function() {
+    $( "#datepicker1" ).datepicker({
+      showOn: "button",
+      buttonImage: "<%= asset_path 'calendar.gif' %>",
+      buttonImageOnly: true,
+      dateFormat: 'yy-mm-dd'
+    }); 
+      $( "#datepicker2" ).datepicker({
+        showOn: "button",
+        buttonImage: "<%= asset_path 'calendar.gif' %>",
+        buttonImageOnly: true,
+        dateFormat: 'yy-mm-dd'
+      });
+  });
+
+</script>
+
 <h4>  
 <% if @user %>
 Patient: <%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %> 
@@ -7,11 +25,11 @@ Patient: <%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %>
 	<form id="chart_form">
 	 <div class="large-4 columns small-12"> 
 		<label>Start Date</label>
-    <input type="date" name="start_date" class="required" value="<%=params[:start_date]%>"> 
+    <input type="text" name="start_date" class="required" value="<%=params[:start_date]%>" id="datepicker1" style="width:180px;display: inline;margin-right:10px;"> 
    </div>
    <div class="large-4 columns small-12">
 	  <label>End Date</label>   
-    <input type="date" name="end_date" class="required" value="<%=params[:end_date]%>"> 
+    <input type="text" name="end_date" class="required" value="<%=params[:end_date]%>" id="datepicker2" style="width:180px;display: inline;margin-right:10px;"> 
    </div> 
    <input type="hidden" name="user" value="<%=params[:user]%>"> 
    <div class="large-4 columns small-12">
@@ -35,28 +53,52 @@ Patient: <%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %>
 					      Total Day Count
 					   </td> 
 					   <td> 
-					      Mood Count
+					      Mood depression Count
 					   </td>
 					  <td> 
-					      Moderate count
+					      Moderate depression count
 					   </td>
 					   <td> 
-					      Severe count 
-					   </td>
+					      Severe depression count 
+					   </td> 
+					   <td> 
+ 					      Normal
+ 					   </td> 
+ 					   <td> 
+ 					      Mood Elation Count
+ 					   </td>
+ 					  <td> 
+ 					      Moderate Elation count
+ 					   </td>
+ 					   <td> 
+ 					      Severe Elation count 
+ 					   </td>
 					</tr> 
 				 <tr>  
 						 <td> 
 					      <%= @daycount %>
 					   </td> 
 					   <td> 
-					     <%= @mood_data.where(:mood => 1).count -%>
+					     <%= @mood_data.where(:mood => -3).count -%>
 					   </td>
 					  <td> 
-					     <%= @mood_data.where(:mood => 2).count %> 
+					     <%= @mood_data.where(:mood => -2).count %> 
 					   </td>
 					   <td> 
-					      <%= @mood_data.where(:mood => 3).count  %>  
-					   </td>
+					      <%= @mood_data.where(:mood => -1).count  %>  
+					   </td> 
+					   <td> 
+ 					      <%= @mood_data.where(:mood => 0).count  %>  
+ 					   </td> 
+ 					   <td> 
+ 					     <%= @mood_data.where(:mood => 1).count -%>
+ 					   </td>
+ 					  <td> 
+ 					     <%= @mood_data.where(:mood => 2).count %> 
+ 					   </td>
+ 					   <td> 
+ 					      <%= @mood_data.where(:mood => 3).count  %>  
+ 					   </td>
 				 </tr>
 		</table>
   
