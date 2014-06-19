@@ -4,13 +4,13 @@ $(function() {
       showOn: "button",
       buttonImage: "<%= asset_path 'calendar.gif' %>",
       buttonImageOnly: true,
-      dateFormat: 'yy-mm-dd'
+      dateFormat: 'mm-dd-yy'
     }); 
       $( "#datepicker2" ).datepicker({
         showOn: "button",
         buttonImage: "<%= asset_path 'calendar.gif' %>",
         buttonImageOnly: true,
-        dateFormat: 'yy-mm-dd'
+        dateFormat: 'mm-dd-yy'
       });
   });
 
@@ -50,28 +50,28 @@ Patient: <%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %>
 		<table style="width:100%; background: #999999 !important;">
 			   <tr> 
 				     <td> 
-					      Total Day Count
+					      Total Day
 					   </td> 
 					   <td> 
-					      Mood depression Count
+					      Severe  depression
 					   </td>
 					  <td> 
-					      Moderate depression count
+					      Mod depression
 					   </td>
 					   <td> 
-					      Severe depression count 
+					      Mild depression
 					   </td> 
 					   <td> 
  					      Normal
  					   </td> 
  					   <td> 
- 					      Mood Elation Count
+ 					      Mild Elation
  					   </td>
  					  <td> 
- 					      Moderate Elation count
+ 					      Mod Elation
  					   </td>
  					   <td> 
- 					      Severe Elation count 
+ 					      Severe Elation
  					   </td>
 					</tr> 
 				 <tr>  
@@ -79,25 +79,25 @@ Patient: <%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %>
 					      <%= @daycount %>
 					   </td> 
 					   <td> 
-					     <%= @mood_data.where(:mood => -3).count -%>
+					     <%= @mood_data.where(:mood => 1).count -%>
 					   </td>
 					  <td> 
-					     <%= @mood_data.where(:mood => -2).count %> 
+					     <%= @mood_data.where(:mood => 2).count %> 
 					   </td>
 					   <td> 
-					      <%= @mood_data.where(:mood => -1).count  %>  
+					      <%= @mood_data.where(:mood => 3).count  %>  
 					   </td> 
 					   <td> 
- 					      <%= @mood_data.where(:mood => 0).count  %>  
+ 					      <%= @mood_data.where(:mood => 4).count  %>  
  					   </td> 
  					   <td> 
- 					     <%= @mood_data.where(:mood => 1).count -%>
+ 					     <%= @mood_data.where(:mood => 5).count -%>
  					   </td>
  					  <td> 
- 					     <%= @mood_data.where(:mood => 2).count %> 
+ 					     <%= @mood_data.where(:mood => 6).count %> 
  					   </td>
  					   <td> 
- 					      <%= @mood_data.where(:mood => 3).count  %>  
+ 					      <%= @mood_data.where(:mood => 7).count  %>  
  					   </td>
 				 </tr>
 		</table>
@@ -109,16 +109,16 @@ Patient: <%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %>
 	<table style="width:100%; background: #999999 !important;">
 		   <tr> 
 			     <td> 
-				      Total Day Count
+				      Total Day 
 				   </td> 
 				   <td> 
-				      Mood Count
+				      Mild Irritability
 				   </td>
 				  <td> 
-				      Moderate count
+				      Mod Irritability
 				   </td>
 				   <td> 
-				      Severe count 
+				      Severe Irritability 
 				   </td>
 				</tr> 
 			 <tr>  
@@ -144,16 +144,16 @@ Patient: <%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %>
 	<table style="width:100%; background: #999999 !important;">
 		   <tr> 
 			     <td> 
-				      Total Day Count
+				      Total Day
 				   </td> 
 				   <td> 
-				      Mood Count
+				      Mild Anxiety
 				   </td>
 				  <td> 
-				      Moderate count
+				      Mod Anxiety
 				   </td>
 				   <td> 
-				      Severe count 
+				      Severe Anxiety 
 				   </td>
 				</tr> 
 			 <tr>  
@@ -364,7 +364,7 @@ function hide_records(){
 	   <% else %> 
 	    <tr> 
 		   <td colspan="5">
-			   Not Avaliable
+			   Not Available
 			 </td>
 		  </tr>
 	   <% end %>

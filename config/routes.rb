@@ -1,7 +1,6 @@
 Moodatics::Application.routes.draw do
   
   resources :doctors
-
          
   match "admin"  => "business_admin#index", as: 'admin' , :via => :get 
   

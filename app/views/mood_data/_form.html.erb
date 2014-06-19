@@ -4,7 +4,7 @@ $(function() {
       showOn: "button",
       buttonImage: "<%= asset_path 'calendar.gif' %>",
       buttonImageOnly: true,
-      dateFormat: 'yy-mm-dd'
+      dateFormat: 'mm-dd-yy'
     });
   });
 
@@ -29,15 +29,16 @@ $(function() {
       <%= label_tag("mood_datum_entry_at", "Date", class: 'make-bold') %>
     <br>   
     <% if @mood_datum.entry_at %>
-      <input type="text" id="datepicker" name="mood_datum[entry_at]" value="<%=@mood_datum.entry_at%>" style="width:130px;display: inline;margin-right:10px;"> 
+      <input type="text" id="datepicker" name="mood_datum[entry_at]" value="<%=@mood_datum.entry_at.strftime('%m-%d-%Y')%>" style="width:130px;display: inline;margin-right:10px;" readonly> 
     <% else %>
-      <input type="text" id="datepicker" name="mood_datum[entry_at]" value="<%=Date.today%>" style="width:130px;display: inline;margin-right:10px;">
+      <input type="text" id="datepicker" name="mood_datum[entry_at]" value="<%=Date.today.strftime('%m-%d-%Y')%>" style="width:130px;display: inline;margin-right:10px;" readonly>
     <% end %>  
+    Click on the Calendar icon to choose a date.
     </div>
      <div class="row"> 
     <%= f.label :sleep ,'Enter the hours slept' , class: 'make-bold' %>
 
-    <%= f.select "sleep", options_for_select([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]),{},{:style => 'width:50px;margin-bottom:20px;'}  %> 
+    <%= f.select "sleep", options_for_select([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]),{},{:style => 'width:50px;margin-bottom:20px;'}  %> 
      </div>
     <div class="row"> 
 	   <%= f.label :mood , class: 'make-bold'%>  

@@ -9,9 +9,11 @@ class MoodDataController < ApplicationController
         @datas = [] 
         end_date = Date.today - 7.days 
         start_date = Date.today  
-        if params[:start_date] && params[:end_date]
-           end_date = Date.parse(params[:end_date]) 
-           start_date = Date.parse(params[:start_date])
+        if params[:start_date] && params[:end_date] 
+           
+           start_date = Time.strptime(params[:start_date] , "%m-%d-%Y").to_datetime.to_date     
+           end_date = Time.strptime(params[:end_date] , "%m-%d-%Y").to_datetime.to_date         
+           
         end
        
         @mood_data = @user.mood_data.where(:entry_at => start_date..end_date)
@@ -107,7 +109,10 @@ class MoodDataController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def mood_datum_params
+    def mood_datum_params 
+      str = params["mood_datum"]["entry_at"]
+      start_date = Time.strptime(params["mood_datum"]["entry_at"] , "%m-%d-%Y").to_datetime    
+      params[:mood_datum]["entry_at"] = start_date.to_date
       params.require(:mood_datum).permit(:entry_at, :mood, :sleep, :irritability, :anxiety, :comments, :user_id, :doctor_id)
     end
 end

@@ -52,7 +52,7 @@
 	        <td><%= patient.middle_name %></td>
 	        <td><%= patient.email %></td>   
 	        <td><%= link_to 'Delete', delete_user_path(patient), method: :delete, data: { confirm: 'Are you sure?' }, class: 'button tiny' %> </td>
-	        <td><%= link_to 'Edit', edit_user_path(user), class: 'button tiny' %> </td> 
+	        <td><%= link_to 'Edit', edit_user_path(patient), class: 'button tiny' %> </td> 
 	       </tr>  
 	       <% end %>
 	        </table>

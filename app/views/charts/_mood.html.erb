@@ -9,9 +9,14 @@ $(function () {
 	
                 categories: [ 
                               <% @mood_data.each do |t| %> 
-                                '<%= t.entry_at.strftime("%m/%d/%y") %>',  
+                                '<%= t.entry_at.strftime("%m-%d-%Y") %>',  
                               <% end %>
-                            ]
+                            ]  ,
+                              labels: {
+                                              style: {
+                                                  color: '#999999'
+                                              }
+                                          }
             },
             yAxis: {
              
@@ -22,11 +27,11 @@ $(function () {
 								labels: {
 								         formatter: function() { 
 									          if(this.value == 1){ 
-									            return "Mild depression" 
+									            return "Severe depression" 
 									          }else if(this.value == 2){
 										          return "Moderate depression"  
 									          }else if(this.value == 3){
-										          return "Severe depression" 
+										          return "Mild depression" 
 									          }else if(this.value == 4){ 
 									            return "Normal" 
 									          }else if(this.value == 5){
@@ -44,11 +49,11 @@ $(function () {
             tooltip: {
                formatter: function() { 
 				          if(this.y == 1){ 
-				            return this.x + "- Mild depression" 
+				            return this.x + "- Severe depression" 
 				          }else if(this.y == 2){
 					          return this.x + " - Moderate depression"  
 				          }else if(this.y == 3){
-					          return this.x + " - Severe depression" 
+					          return this.x + " - Mild depression" 
 				          }else if(this.y == 4){ 
 				            return this.x + "- Normal" 
 				          }else if(this.y == 5){
